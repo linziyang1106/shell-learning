@@ -371,3 +371,102 @@ root用户
 
 ### 磁盘管理
 
+> df（列出文件系统整体的磁盘使用量） du（检查磁盘空间使用量）
+
+`df -h`列出单位为M的文件  
+
+`du -a`列出所有
+
+`du -sm /*`检查根目录下每个目录所占用的容量
+
+### 进程管理
+
+1. Linux中，每一个程序都是有自己的一个进程，每一个进程都有一个id号
+2. 每一个进程都有一个父进程
+3. 进程可以有两种存在方式：前台，后台运行
+4. 服务后台运行较多
+
+> 命令
+
+`ps`查看当前系统中正在执行的各种进程的信息！
+
+`ps -a`显示当前终端运行的所有进程信息
+
+`ps -u`以用户的信息希纳是进程
+
+`ps -x`显示后台运行进程的参数！
+
+```bash
+# ps -aux|查看所有的进程
+ps -aux|grep mysql
+ps -aux|grep java
+ps -aux|grep redis
+#| 管道符 A|B
+# grap查找文件中符合条件的字符串
+```
+
+`ps -ef|mysql`：可以查看到父进程的信息
+
+```bash
+pstree -pu
+	-p 显示父id
+	-u 显示用户组
+```
+
+![](http://img.codelin.xyz/20200919205357.png)
+
+结束进程：杀掉进程，等价于window结束任务
+
+`kill -9 进程的id`：表示强制结束进程
+
+### 环境安装
+
+一般三种安装方式：
+
++ rpm（jdk），
++ 解压缩（tomcat），
++ yum在线安装（docker）
+
+#### jdk安装
+
+卸载open jdk
+
+```bash
+rpm -qa|grep jdk
+rpm -e --nodeps jdk_
+#代表强制移除
+```
+
+rpm安装
+
+```bash
+rpm -ivh rpm包
+```
+
+#### 防火墙相关
+
+```bash
+# 查看firewall服务状态
+systemctl status firewalld
+
+# 开启、重启、关闭、firewalld.service服务
+# 开启
+service firewalld start
+# 重启
+service firewalld restart
+# 关闭
+service firewalld stop
+
+# 查看防火墙规则
+firewall-cmd --list-all    # 查看全部信息
+firewall-cmd --list-ports  # 只看端口信息
+
+# 开启端口（80）
+开端口命令：firewall-cmd --zone=public --add-port=80/tcp --permanent
+重启防火墙：systemctl restart firewalld.service
+
+命令含义：
+--zone #作用域
+--add-port=80/tcp  #添加端口，格式为：端口/通讯协议
+--permanent   #永久生效，没有此参数重启后失效
+```
