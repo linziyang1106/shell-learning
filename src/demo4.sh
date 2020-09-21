@@ -8,3 +8,5 @@ echo ${#str}
 # 获取参数
 
 echo $$
+
+echo ${str:0:2}
