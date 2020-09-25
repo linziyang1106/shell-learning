@@ -154,3 +154,5 @@ done    #循环结束
 
 #### $$
 用户获取当前Shell环境的进程ID号
+
+![](http://img.codelin.xyz/20200922195656.png)

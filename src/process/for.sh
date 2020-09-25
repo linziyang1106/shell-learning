@@ -33,3 +33,8 @@ done
 # do
 #     command
 # done
+
+# for((;;))
+# do 
+#   命令
+# done
